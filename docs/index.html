@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Duck Patrol Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-sA+4pZt6v9Y3YXm6KzvFj1xYl7lTME6sD0uPp6C3QgE="
+    crossorigin=""
+  />
+  <style>
+    html, body { height: 100%; margin: 0; }
+    #map { height: 100%; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-o9N1jX2Qk8b9tXK7mkgGx2pLh4iYwRz0F8KciP0p+1w="
+    crossorigin=""
+  ></script>
+
+  <script>
+    // Initialize map
+    var map = L.map('map').setView([45.0, -110.0], 6); // adjust to your area
+
+    // Add basemap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Load GeoJSON (example path — adjust for your repo)
+    fetch('data/house_tiered_buffers.geojson')
+      .then(res => res.json())
+      .then(data => {
+        L.geoJSON(data, {
+          style: {
+            color: '#ff7800',
+            weight: 2,
+            fillOpacity: 0.3
+          }
+        }).addTo(map);
+      });
+  </script>
+</body>
+</html>
