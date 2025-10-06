@@ -38,7 +38,7 @@
     }).addTo(map);
 
     // Load GeoJSON (example path — adjust for your repo)
-    fetch('data/house_tiered_buffers.geojson')
+    fetch('../data/house_tiered_buffers.geojson')
       .then(res => res.json())
       .then(data => {
         L.geoJSON(data, {
