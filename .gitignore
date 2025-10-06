@@ -1,0 +1,13 @@
+# Ignore raw data folder
+raw_data/
+
+# Ignore Python cache & env stuff
+__pycache__/
+*.pyc
+.env
+*.env
+
+# Ignore macOS junk
+.DS_Store
+
+
